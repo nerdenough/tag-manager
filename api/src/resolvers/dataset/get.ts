@@ -35,10 +35,12 @@ export const get = ({ identifier }: { identifier: string }): Dataset => {
     const captionFileName = captionFileNames.find((captionFileName) =>
       captionFileName.startsWith(baseFileName)
     )
+    const url = `http://localhost:4000/datasets/${identifier}/${imageFileName}`
 
     if (!captionFileName) {
       return images.push({
         filename: imageFileName,
+        url,
       })
     }
 
@@ -61,6 +63,7 @@ export const get = ({ identifier }: { identifier: string }): Dataset => {
 
     return images.push({
       filename: imageFileName,
+      url,
       captions,
     })
   })

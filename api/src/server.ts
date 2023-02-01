@@ -1,5 +1,6 @@
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
+import cors from 'cors'
 import { GraphQLError } from 'graphql'
 import { existsSync, writeFileSync } from 'fs'
 import path from 'path'
@@ -63,6 +64,8 @@ const root = {
 }
 
 const app = express()
+app.use(cors())
+app.use('/datasets', express.static('/datasets'))
 app.use(
   '/graphql',
   graphqlHTTP({

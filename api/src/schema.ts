@@ -3,6 +3,7 @@ import { buildSchema } from 'graphql'
 export const schema = buildSchema(`
   type Image {
     filename: String!
+    url: String!
     captions: [String!]
   }
 
