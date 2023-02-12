@@ -16,11 +16,20 @@ export const schema = buildSchema(`
     get(identifier: String!): Dataset
   }
 
+  input ImageInput {
+    filename: String!
+    captions: [String!]!
+  }
+
+  type DatasetMutations {
+    update(identifier: String!, images: [ImageInput!]!): Boolean!
+  }
+
   type Query {
     dataset: DatasetQueries!
   }
 
   type Mutation {
-    updateImage(datasetIdentifier: String!, imageFileName: String!, captions: [String!]): Boolean!
+    dataset: DatasetMutations!
   }
 `)

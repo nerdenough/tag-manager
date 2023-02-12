@@ -4,6 +4,11 @@ export type Image = {
   captions?: string[]
 }
 
+export type ImageInput = {
+  filename: string
+  captions: string[]
+}
+
 export type Dataset = {
   images: Image[]
 }

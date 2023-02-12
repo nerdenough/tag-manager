@@ -1,7 +1,7 @@
 import test from 'ava'
 import { GraphQLError } from 'graphql'
-import { Dataset } from '../../types'
-import { get } from './get'
+import { Dataset } from '../../src/types'
+import { get } from '../../src/resolvers/dataset/get'
 
 const mockfs = require('mock-fs')
 

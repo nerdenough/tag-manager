@@ -1,6 +1,6 @@
 import test from 'ava'
 import { GraphQLError } from 'graphql'
-import { getIdentifiers } from './getIdentifiers'
+import { getIdentifiers } from '../../src/resolvers/dataset/getIdentifiers'
 
 const mockfs = require('mock-fs')
 
