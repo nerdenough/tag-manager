@@ -11,9 +11,6 @@ jobs:
     strategy:
       matrix:
         node: [16, 18]
-    defaults:
-      run:
-        working-directory: ./api
 
     steps:
       - name: Checkout
@@ -49,4 +46,4 @@ jobs:
         run: pnpm install
 
       - name: Run tests
-        run: pnpm run test
+        run: pnpm -r test
