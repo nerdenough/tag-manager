@@ -4,7 +4,7 @@ import { Image } from '../../gql/graphql'
 type Props = {
   images: Image[]
   selectedImage?: Image
-  onImageClick: (image: Image) => void
+  onImageClick: (e: MouseEvent, image: Image) => void
 }
 
 defineProps<Props>()
@@ -21,7 +21,7 @@ defineProps<Props>()
             selectedImage?.filename !== image.filename,
           'border-blue-500': selectedImage?.filename === image.filename,
         }"
-        @click="() => onImageClick(image)"
+        @click="(e) => onImageClick(e, image)"
       >
         <img class="max-w-48 max-h-48" :src="image.url" :alt="image.filename" />
         <p

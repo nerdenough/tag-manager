@@ -50,7 +50,24 @@ if (images?.length) {
 const selectedImage: Ref<Image | undefined> = ref(images?.[0])
 let captionInputValue: string = ''
 
-const onImageClick = (image: Image) => {
+const onImageClick = (e: MouseEvent, image: Image) => {
+  if (selectedImage.value && e.ctrlKey) {
+    const captionsToAdd =
+      image.captions?.filter(
+        (caption) => !selectedImage.value?.captions?.find((c) => c === caption)
+      ) || []
+
+    selectedImage.value = {
+      ...selectedImage.value,
+      captions: selectedImage.value?.captions
+        ? selectedImage.value?.captions.concat(captionsToAdd)
+        : captionsToAdd,
+    }
+
+    commit('updateImageCaptions', selectedImage.value)
+    return
+  }
+
   selectedImage.value = image
 }
 
