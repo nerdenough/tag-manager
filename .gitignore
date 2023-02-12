@@ -1,4 +1,6 @@
 .DS_Store
 /datasets/**/*
+!/datasets/reindeer
+!/datasets/reindeer/*
 node_modules
 .pnpm-*

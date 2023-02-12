@@ -52,6 +52,7 @@ export const get = ({ identifier }: { identifier: string }): Dataset => {
         .toString()
         .split(',')
         .map((str) => str.trim())
+        .filter((str) => str)
     } catch (err) {
       console.error(err)
       throw new GraphQLError('error reading caption file for image', {

@@ -12,15 +12,28 @@ const store = createStore({
   state(): State {
     return {
       status: 'saved',
-      images: [],
+      dataset: {
+        identifier: '',
+        images: [],
+      },
     }
   },
   mutations: {
-    setImages(state, images: Image[]) {
-      state.images = images
+    setDataset(
+      state,
+      dataset: {
+        identifier: string
+        images: Image[]
+      }
+    ) {
+      state.dataset = dataset
+    },
+    setStatus(state, status) {
+      state.status = status
     },
     updateImageCaptions(state, { filename, captions }: Image) {
-      state.images = state.images.map((image) => {
+      state.status = 'unsaved'
+      state.dataset.images = state.dataset.images.map((image) => {
         if (image.filename !== filename) {
           return image
         }

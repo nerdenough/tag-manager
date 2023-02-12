@@ -47,7 +47,7 @@ export const update = ({
   identifier: string
   images: ImageInput[]
 }) => {
-  if (!existsSync(path.resolve('/datasets', identifier))) {
+  if (!identifier || !existsSync(path.resolve('/datasets', identifier))) {
     throw new GraphQLError('the specified dataset does not exist', {
       extensions: {
         identifier,

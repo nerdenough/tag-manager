@@ -13,8 +13,9 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n    query getDataset {\n      dataset {\n        getIdentifiers\n      }\n    }\n  ": types.GetDatasetDocument,
-    "\n      query getDatasetImages($identifier: String!) {\n        dataset {\n          get(identifier: $identifier) {\n            images {\n              filename\n              url\n              captions\n            }\n          }\n        }\n      }\n    ": types.GetDatasetImagesDocument,
+    "\n    query getDatasetIdentifiers {\n      dataset {\n        getIdentifiers\n      }\n    }\n  ": types.GetDatasetIdentifiersDocument,
+    "\n  query getDataset($identifier: String!) {\n    dataset {\n      get(identifier: $identifier) {\n        images {\n          filename\n          url\n          captions\n        }\n      }\n    }\n  }\n": types.GetDatasetDocument,
+    "\n  mutation updateDataset($identifier: String!, $images: [ImageInput!]!) {\n    dataset {\n      update(identifier: $identifier, images: $images)\n    }\n  }\n": types.UpdateDatasetDocument,
 };
 
 /**
@@ -34,11 +35,15 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    query getDataset {\n      dataset {\n        getIdentifiers\n      }\n    }\n  "): (typeof documents)["\n    query getDataset {\n      dataset {\n        getIdentifiers\n      }\n    }\n  "];
+export function graphql(source: "\n    query getDatasetIdentifiers {\n      dataset {\n        getIdentifiers\n      }\n    }\n  "): (typeof documents)["\n    query getDatasetIdentifiers {\n      dataset {\n        getIdentifiers\n      }\n    }\n  "];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n      query getDatasetImages($identifier: String!) {\n        dataset {\n          get(identifier: $identifier) {\n            images {\n              filename\n              url\n              captions\n            }\n          }\n        }\n      }\n    "): (typeof documents)["\n      query getDatasetImages($identifier: String!) {\n        dataset {\n          get(identifier: $identifier) {\n            images {\n              filename\n              url\n              captions\n            }\n          }\n        }\n      }\n    "];
+export function graphql(source: "\n  query getDataset($identifier: String!) {\n    dataset {\n      get(identifier: $identifier) {\n        images {\n          filename\n          url\n          captions\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getDataset($identifier: String!) {\n    dataset {\n      get(identifier: $identifier) {\n        images {\n          filename\n          url\n          captions\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation updateDataset($identifier: String!, $images: [ImageInput!]!) {\n    dataset {\n      update(identifier: $identifier, images: $images)\n    }\n  }\n"): (typeof documents)["\n  mutation updateDataset($identifier: String!, $images: [ImageInput!]!) {\n    dataset {\n      update(identifier: $identifier, images: $images)\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

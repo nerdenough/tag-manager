@@ -19,6 +19,17 @@ export type Dataset = {
   images?: Maybe<Array<Image>>;
 };
 
+export type DatasetMutations = {
+  __typename?: 'DatasetMutations';
+  update: Scalars['Boolean'];
+};
+
+
+export type DatasetMutationsUpdateArgs = {
+  identifier: Scalars['String'];
+  images: Array<ImageInput>;
+};
+
 export type DatasetQueries = {
   __typename?: 'DatasetQueries';
   get?: Maybe<Dataset>;
@@ -37,16 +48,14 @@ export type Image = {
   url: Scalars['String'];
 };
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  updateImage: Scalars['Boolean'];
+export type ImageInput = {
+  captions: Array<Scalars['String']>;
+  filename: Scalars['String'];
 };
 
-
-export type MutationUpdateImageArgs = {
-  captions?: InputMaybe<Array<Scalars['String']>>;
-  datasetIdentifier: Scalars['String'];
-  imageFileName: Scalars['String'];
+export type Mutation = {
+  __typename?: 'Mutation';
+  dataset: DatasetMutations;
 };
 
 export type Query = {
@@ -54,18 +63,27 @@ export type Query = {
   dataset: DatasetQueries;
 };
 
-export type GetDatasetQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetDatasetIdentifiersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetDatasetQuery = { __typename?: 'Query', dataset: { __typename?: 'DatasetQueries', getIdentifiers?: Array<string> | null } };
+export type GetDatasetIdentifiersQuery = { __typename?: 'Query', dataset: { __typename?: 'DatasetQueries', getIdentifiers?: Array<string> | null } };
 
-export type GetDatasetImagesQueryVariables = Exact<{
+export type GetDatasetQueryVariables = Exact<{
   identifier: Scalars['String'];
 }>;
 
 
-export type GetDatasetImagesQuery = { __typename?: 'Query', dataset: { __typename?: 'DatasetQueries', get?: { __typename?: 'Dataset', images?: Array<{ __typename?: 'Image', filename: string, url: string, captions?: Array<string> | null }> | null } | null } };
+export type GetDatasetQuery = { __typename?: 'Query', dataset: { __typename?: 'DatasetQueries', get?: { __typename?: 'Dataset', images?: Array<{ __typename?: 'Image', filename: string, url: string, captions?: Array<string> | null }> | null } | null } };
+
+export type UpdateDatasetMutationVariables = Exact<{
+  identifier: Scalars['String'];
+  images: Array<ImageInput> | ImageInput;
+}>;
 
 
-export const GetDatasetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getDataset"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dataset"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getIdentifiers"}}]}}]}}]} as unknown as DocumentNode<GetDatasetQuery, GetDatasetQueryVariables>;
-export const GetDatasetImagesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getDatasetImages"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"identifier"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dataset"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"get"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"identifier"},"value":{"kind":"Variable","name":{"kind":"Name","value":"identifier"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"captions"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetDatasetImagesQuery, GetDatasetImagesQueryVariables>;
+export type UpdateDatasetMutation = { __typename?: 'Mutation', dataset: { __typename?: 'DatasetMutations', update: boolean } };
+
+
+export const GetDatasetIdentifiersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getDatasetIdentifiers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dataset"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getIdentifiers"}}]}}]}}]} as unknown as DocumentNode<GetDatasetIdentifiersQuery, GetDatasetIdentifiersQueryVariables>;
+export const GetDatasetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getDataset"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"identifier"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dataset"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"get"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"identifier"},"value":{"kind":"Variable","name":{"kind":"Name","value":"identifier"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"captions"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetDatasetQuery, GetDatasetQueryVariables>;
+export const UpdateDatasetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateDataset"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"identifier"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"images"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ImageInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dataset"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"identifier"},"value":{"kind":"Variable","name":{"kind":"Name","value":"identifier"}}},{"kind":"Argument","name":{"kind":"Name","value":"images"},"value":{"kind":"Variable","name":{"kind":"Name","value":"images"}}}]}]}}]}}]} as unknown as DocumentNode<UpdateDatasetMutation, UpdateDatasetMutationVariables>;
