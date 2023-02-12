@@ -2,11 +2,13 @@
 import { useQuery } from '@urql/vue'
 import { Ref, ref } from 'vue'
 import { useStore } from 'vuex'
-import { graphql } from '../gql'
+import { graphql } from '../../gql'
 
-import { Image } from '../gql/graphql'
-import { State } from '../types'
-import Caption from './dataset/Caption.vue'
+import { Image } from '../../gql/graphql'
+import { State } from '../../types'
+import Caption from './Caption.vue'
+import ImageGrid from './ImageGrid.vue'
+import ImagePreview from './ImagePreview.vue'
 
 type Props = {
   identifier: string
@@ -45,7 +47,7 @@ if (images?.length) {
   })
 }
 
-const selectedImage: Ref<Image | null> = ref(images?.[0] || null)
+const selectedImage: Ref<Image | undefined> = ref(images?.[0])
 let captionInputValue: string = ''
 
 const onImageClick = (image: Image) => {
@@ -88,36 +90,9 @@ const onAddCaptionFieldKeyUp = (event: KeyboardEvent) => {
 </script>
 
 <template>
-  <div class="flex gap-x-5">
-    <div class="flex flex-1 flex-col">
-      <h2 class="text-xl mb-2">Images</h2>
-      <div class="grid gap-2 grid-cols-4 rounded-md">
-        <div
-          v-for="image in state.dataset.images"
-          class="flex flex-col cursor-pointer border-2 rounded-md items-center justify-center"
-          :class="{
-            'border-slate-800 hover:border-slate-600':
-              selectedImage?.filename !== image.filename,
-            'border-blue-500': selectedImage?.filename === image.filename,
-          }"
-          @click="() => onImageClick(image)"
-        >
-          <img class="max-w-full" :src="image.url" :alt="image.filename" />
-          <p
-            class="w-full font-bold text-center py-2"
-            :class="{
-              'bg-slate-800 text-slate-400':
-                selectedImage?.filename !== image.filename,
-              'bg-blue-500 text-white':
-                selectedImage?.filename === image.filename,
-            }"
-          >
-            {{ image.filename }}
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="flex-1">
+  <div class="flex flex-1 flex-col gap-5">
+    <div class="flex gap-5">
+      <ImagePreview v-if="!!selectedImage" :image="selectedImage" />
       <div v-if="!!selectedImage">
         <h2 class="text-xl">Captions</h2>
         <h3 class="text-lg mb-2">
@@ -147,5 +122,11 @@ const onAddCaptionFieldKeyUp = (event: KeyboardEvent) => {
         </div>
       </div>
     </div>
+
+    <ImageGrid
+      :images="state.dataset.images"
+      :selectedImage="selectedImage"
+      :onImageClick="onImageClick"
+    />
   </div>
 </template>
