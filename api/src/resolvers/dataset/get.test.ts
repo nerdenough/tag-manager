@@ -66,7 +66,6 @@ test.beforeEach(() => {
         'pleurotus parsonsiae, velvet oyster, saprotrophic',
     },
   })
-  console.log('mounted')
 })
 
 test.afterEach(() => {
