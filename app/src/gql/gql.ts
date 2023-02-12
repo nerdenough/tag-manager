@@ -14,7 +14,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  */
 const documents = {
     "\n    query getDataset {\n      dataset {\n        getIdentifiers\n      }\n    }\n  ": types.GetDatasetDocument,
-    "\n    query getDatasetImages($identifier: String!) {\n      dataset {\n        get(identifier: $identifier) {\n          images {\n            filename\n            url\n            captions\n          }\n        }\n      }\n    }\n  ": types.GetDatasetImagesDocument,
+    "\n      query getDatasetImages($identifier: String!) {\n        dataset {\n          get(identifier: $identifier) {\n            images {\n              filename\n              url\n              captions\n            }\n          }\n        }\n      }\n    ": types.GetDatasetImagesDocument,
 };
 
 /**
@@ -38,7 +38,7 @@ export function graphql(source: "\n    query getDataset {\n      dataset {\n    
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    query getDatasetImages($identifier: String!) {\n      dataset {\n        get(identifier: $identifier) {\n          images {\n            filename\n            url\n            captions\n          }\n        }\n      }\n    }\n  "): (typeof documents)["\n    query getDatasetImages($identifier: String!) {\n      dataset {\n        get(identifier: $identifier) {\n          images {\n            filename\n            url\n            captions\n          }\n        }\n      }\n    }\n  "];
+export function graphql(source: "\n      query getDatasetImages($identifier: String!) {\n        dataset {\n          get(identifier: $identifier) {\n            images {\n              filename\n              url\n              captions\n            }\n          }\n        }\n      }\n    "): (typeof documents)["\n      query getDatasetImages($identifier: String!) {\n        dataset {\n          get(identifier: $identifier) {\n            images {\n              filename\n              url\n              captions\n            }\n          }\n        }\n      }\n    "];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

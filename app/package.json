@@ -12,7 +12,8 @@
     "@graphql-typed-document-node/core": "^3.1.1",
     "@urql/vue": "^1.0.4",
     "graphql": "^16.6.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.16.4",
