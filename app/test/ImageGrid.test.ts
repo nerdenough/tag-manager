@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import ImageGrid from '../src/components/dataset/ImageGrid.vue'
+import ImageGrid from '../src/components/ImageGrid.vue'
 import { describe, it, expect } from 'vitest'
 import { Image } from '../src/gql/graphql'
 

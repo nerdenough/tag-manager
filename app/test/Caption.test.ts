@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Caption from '../src/components/dataset/Caption.vue'
+import Caption from '../src/components/Caption.vue'
 import { describe, it, expect } from 'vitest'
 
 describe('Caption', () => {

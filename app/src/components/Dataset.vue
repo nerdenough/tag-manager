@@ -2,11 +2,12 @@
 import { useQuery } from '@urql/vue'
 import { Ref, ref } from 'vue'
 import { useStore } from 'vuex'
-import { graphql } from '../../gql'
 
-import { Image } from '../../gql/graphql'
-import { State } from '../../types'
+import { graphql } from '../gql'
+import { Image } from '../gql/graphql'
+import { State } from '../types'
 import Caption from './Caption.vue'
+import CaptionManager from './CaptionManager.vue'
 import ImageGrid from './ImageGrid.vue'
 import ImagePreview from './ImagePreview.vue'
 
@@ -90,51 +91,23 @@ const removeCaption = (caption: string) => {
   image.captions = image?.captions.filter((str) => str !== caption)
   commit('updateImageCaptions', image)
 }
-
-const onAddCaptionFieldKeyUp = (event: KeyboardEvent) => {
-  if (event.code !== 'Comma' && event.code !== 'Enter') {
-    return
-  }
-
-  let caption = (event.target as HTMLInputElement).value
-  if (!caption || !selectedImage.value?.filename) {
-    return
-  }
-
-  caption = event.code === 'Comma' ? caption.slice(0, -1) : caption
-  addCaption(caption.trim())
-}
 </script>
 
 <template>
-  <div class="flex flex-1 flex-col gap-5">
-    <div class="flex gap-5">
-      <ImagePreview v-if="!!selectedImage" :image="selectedImage" />
-      <div v-if="!!selectedImage">
-        <h2 class="text-xl">Captions</h2>
-        <h3 class="text-lg mb-2">
-          <span class="text-slate-500">{{ selectedImage.filename }}</span>
-        </h3>
-        <div class="flex mb-5">
-          <input
-            @keyup="onAddCaptionFieldKeyUp"
-            v-model="captionInputValue"
-            type="text"
-            class="flex-1 p-2 text-xl bg-slate-800 border-2 border-r-0 border-slate-700 focus:border-blue-500 hover:border-slate-600 rounded-tl-md rounded-bl-md w-64 outline-none"
-            placeholder="Write a descriptive tag"
-          />
-          <button
-            @click="() => addCaption(captionInputValue)"
-            class="bg-blue-500 text-xl p-2 rounded-tr-md rounded-br-md"
-          >
-            Add
-          </button>
+  <div class="flex flex-1 flex-col xl:flex-row gap-5">
+    <div class="flex-1">
+      <div class="flex gap-5" v-if="!!selectedImage">
+        <div>
+          <h2 class="text-xl mb-2">Image Preview</h2>
+          <ImagePreview :image="selectedImage" />
         </div>
-        <div class="flex flex-wrap gap-2">
-          <Caption
-            v-for="caption in selectedImage.captions"
-            :caption="caption"
-            :remove="removeCaption"
+
+        <div class="flex-1">
+          <CaptionManager
+            :selectedImage="selectedImage"
+            :modelValue="captionInputValue"
+            :addCaption="addCaption"
+            :removeCaption="removeCaption"
           />
         </div>
       </div>

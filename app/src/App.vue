@@ -2,7 +2,7 @@
 import { useStore } from 'vuex'
 
 import Header from './components/Header.vue'
-import Dataset from './components/dataset/Dataset.vue'
+import Dataset from './components/Dataset.vue'
 
 import { State } from './types'
 
