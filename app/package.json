@@ -6,7 +6,9 @@
     "dev": "vite --host",
     "codegen": "graphql-codegen --watch",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest --environment jsdom",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.1",
@@ -19,12 +21,15 @@
     "@graphql-codegen/cli": "^2.16.4",
     "@graphql-codegen/client-preset": "^1.2.6",
     "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/test-utils": "^2.2.10",
     "autoprefixer": "^10.4.13",
+    "jsdom": "^21.1.0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4",
     "vite": "^4.0.0",
+    "vitest": "^0.28.4",
     "vue-tsc": "^1.0.11"
   }
 }
