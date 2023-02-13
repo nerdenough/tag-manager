@@ -37,12 +37,12 @@ const onAddCaptionFieldKeyUp = (event: KeyboardEvent) => {
           $emit('update:modelValue', ($event.target as HTMLInputElement).value)
         "
         type="text"
-        class="flex-1 p-2 text-xl bg-slate-700 border-2 border-r-0 border-slate-700 focus:border-blue-500 hover:border-slate-600 rounded-tl-md rounded-bl-md w-64 outline-none"
+        class="flex-1 p-2 font-bold text-md bg-slate-800 border-2 border-r-0 border-slate-700 focus:border-blue-500 hover:border-slate-600 rounded-tl-md rounded-bl-md w-64 outline-none"
         placeholder="Write a descriptive tag"
       />
       <button
         @click="() => addCaption(modelValue)"
-        class="bg-blue-500 text-xl p-2 rounded-tr-md rounded-br-md"
+        class="bg-blue-500 font-bold text-md p-2 rounded-tr-md rounded-br-md"
       >
         Add
       </button>

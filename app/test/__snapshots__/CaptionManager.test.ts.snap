@@ -3,7 +3,7 @@
 exports[`Caption > should render the component with captions for the selected image 1`] = `
 "<div caption=\\"Some caption\\">
   <h2 class=\\"text-xl mb-2\\">Captions</h2>
-  <div class=\\"flex mb-5\\"><input type=\\"text\\" class=\\"flex-1 p-2 text-xl bg-slate-700 border-2 border-r-0 border-slate-700 focus:border-blue-500 hover:border-slate-600 rounded-tl-md rounded-bl-md w-64 outline-none\\" placeholder=\\"Write a descriptive tag\\"><button class=\\"bg-blue-500 text-xl p-2 rounded-tr-md rounded-br-md\\"> Add </button></div>
+  <div class=\\"flex mb-5\\"><input type=\\"text\\" class=\\"flex-1 p-2 font-bold text-md bg-slate-800 border-2 border-r-0 border-slate-700 focus:border-blue-500 hover:border-slate-600 rounded-tl-md rounded-bl-md w-64 outline-none\\" placeholder=\\"Write a descriptive tag\\"><button class=\\"bg-blue-500 font-bold text-md p-2 rounded-tr-md rounded-br-md\\"> Add </button></div>
   <div class=\\"flex flex-wrap gap-2\\">
     <div class=\\"flex gap-x-2 bg-slate-800 text-lg p-2 rounded-md\\"><span class=\\"flex-1\\">some</span>
       <div class=\\"flex items-center\\"><button class=\\"w-8 h-8 bg-slate-900 hover:bg-slate-700 text-slate-400 hover:text-red-300 rounded-md\\"> x </button></div>

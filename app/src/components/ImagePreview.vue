@@ -10,7 +10,7 @@ defineProps<Props>()
 
 <template>
   <div class="flex flex-col items-center text-center">
-    <div class="flex flex-col gap-y-4 bg-slate-700 rounded-md p-4">
+    <div class="flex flex-col gap-y-4 bg-slate-800 rounded-md p-4">
       <span class="font-bold"
         >{{ image.filename }}<span v-if="image.captions?.length"></span
       ></span>
