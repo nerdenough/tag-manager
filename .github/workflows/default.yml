@@ -5,8 +5,8 @@ on:
   - pull_request
 
 jobs:
-  test-api:
-    name: Test API
+  tests:
+    name: Run tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
